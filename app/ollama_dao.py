@@ -1,7 +1,5 @@
 import traceback
 
-
-
 import ollama
 
 
@@ -32,4 +30,4 @@ if __name__ == "__main__":
             'content': 'Why is the sky blue?',
         },
     ]
-    print(chat_completion(model,messages))
+    print(chat_completion(model, messages))
