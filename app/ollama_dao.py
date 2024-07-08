@@ -1,20 +1,18 @@
 import traceback
-
 import ollama
+
+model_list = [models["name"].split(":")[0] for models in ollama.list().get("models")]
 
 
 def chat_completion(model: str, messages: list[dict]):
     try:
+        if model not in model_list:
+            ollama.pull(model)
         response = ollama.chat(
             model=model,
             messages=messages)
 
         answer = response['message']['content']
-    except ollama.ResponseError as e:
-        print('Error:', e.error)
-        if e.status_code == 404:
-            print("pulling the model")
-            ollama.pull(model)
     except Exception as e:
         traceback.print_exc()
         return None
