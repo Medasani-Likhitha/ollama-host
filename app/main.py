@@ -8,6 +8,12 @@ app = FastAPI()
 async def ping_server():
     return {"message": "Hi From ollama"}
 
+@app.post("/test")
+async def test(request: Request):
+    headers = request.headers
+    data = await request.json()
+    return {"message": "Hi From ollama"}
+
 
 if __name__ == "__main__":
     uvicorn.run(app)
