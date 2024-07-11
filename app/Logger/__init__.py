@@ -1,0 +1,1 @@
+from .logger_app import custom_logger,log_message
